@@ -1,5 +1,6 @@
 ﻿using FIA41_HoeffkenV_ApiService_QuizGame.DataAccessLayer;
 using FIA41_HoeffkenV_ApiService_QuizGame.Models;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 
 namespace FIA41_HoeffkenV_ApiService_QuizGame.Services
@@ -15,7 +16,9 @@ namespace FIA41_HoeffkenV_ApiService_QuizGame.Services
 
         public List<Question> GetRandomQuestions(int id)
         {
-            return context.Questions.OrderBy(r => Guid.NewGuid()).Take(id).ToList();
+            var quetionList = context.Questions.ToList();
+            var randomQuestionList = quetionList.OrderBy(q => Guid.NewGuid());
+            return randomQuestionList.Take(id).ToList();
         }
 
         public void SetQuestion(Question question)
@@ -23,24 +26,29 @@ namespace FIA41_HoeffkenV_ApiService_QuizGame.Services
             
         }
 
-        public List<Question> GetRandomQuestionsByCategories(List<int> CategorieIds)
+        public List<Question> GetRandomQuestionsByCategories(List<int> ListofTheCategories)
         {
             List<KpQuestionsCategoery> allKPEntitysWithContainedIds = new List<KpQuestionsCategoery>();
-            foreach(int Entry in CategorieIds)
+            foreach(int Entry in ListofTheCategories)
             {
 
-                var input1 = context.KpQuestionsCategoeries.Where(r => r.CategoriesId == Entry).OrderBy(r => Guid.NewGuid()).Take(15).ToList();
+                var input1 = context.KpQuestionsCategoeries.Where(r => r.CategoriesId == Entry).ToList();
 
                 allKPEntitysWithContainedIds.AddRange(input1);
+            }
 
+            List<Question> allFoundedQuestions = new List<Question>();
+            var ListOfChosenCategories = allKPEntitysWithContainedIds.OrderBy(q => Guid.NewGuid()).Take(15).ToList();
 
-
-
+            foreach(var entry2 in allKPEntitysWithContainedIds)
+            {
+                var Question = context.Questions
+                .Single(q => q.Id == entry2.QuestionId);
+                allFoundedQuestions.Add(Question);
             }
             
-
-            List<Question> allMatchingQuestion = context.Questions.Where(r => r.Id == ) 
-        
+            //List<Question> allMatchingQuestion = context.Questions.Where(r => r.Id == ) 
+            return allFoundedQuestions;
         }
 
 

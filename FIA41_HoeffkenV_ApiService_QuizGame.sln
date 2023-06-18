@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIA41_HoeffkenV_ApiService_QuizGame", "FIA41_HoeffkenV_ApiService_QuizGame.csproj", "{45A86B66-3241-4ED5-9B77-BEB251279B41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizGame_RestApi", "QuizGame_RestApi.csproj", "{45A86B66-3241-4ED5-9B77-BEB251279B41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

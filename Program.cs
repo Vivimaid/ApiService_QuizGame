@@ -7,6 +7,11 @@ namespace FIA41_HoeffkenV_ApiService_QuizGame
     {
         public static void Main(string[] args)
         {
+
+
+
+            
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.

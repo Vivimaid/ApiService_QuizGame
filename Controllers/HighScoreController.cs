@@ -24,7 +24,7 @@ namespace FIA41_HoeffkenV_ApiService_QuizGame.Controllers
         [HttpGet]
         public JsonResult GetHighScores() 
         {
-            DataLOad start = new DataLOad();
+            
             
             return new JsonResult(highScoreService.getHighscores());   
         }

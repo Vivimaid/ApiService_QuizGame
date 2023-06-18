@@ -11,27 +11,29 @@ namespace FIA41_HoeffkenV_ApiService_QuizGame.Controllers
     public class QuestionController : ControllerBase
     {
         private QuestionService questionService;
-        
+
         public QuestionController()
         {
             this.questionService = new QuestionService();
         }
-       
+
         [HttpGet("{id}")]
         public List<Question> GetRandomQuestion(int id)
         {
-            
-            return new List<Question>();
+
+            return questionService.GetRandomQuestions(id);
         }
-
-
 
         [HttpPost]
-        public void Post([FromBody] Question question) {
-        
-            questionService.SetQuestion(question);
-        }
+        public List<Question> GetRandomQuestionsByCategories([FromBody] List<int> categoriesIDs)
+        {
+            return questionService.GetRandomQuestionsByCategories(categoriesIDs);
 
+
+
+        }
+        
+        
 
 
 
